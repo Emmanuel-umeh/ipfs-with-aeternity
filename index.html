@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PDFSafe</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">PDFSafe <span class="sr-only">(current)</span></a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+              <div class="container mt-5">
+                  <div class="row">
+                      <div class="col-md-8">
+                        <!-- add file -->
+                        <div id="loader" >
+                                <svg width="48" height="48" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                  <path d="M 150,0 a 150,150 0 0,1 106.066,256.066 l -35.355,-35.355 a -100,-100 0 0,0 -70.711,-170.711 z" fill="#76f19a">
+                                    <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 150 150" to="360 150 150" begin="0s" dur=".5s" fill="freeze" repeatCount="indefinite"></animateTransform>
+                                  </path>
+                                </svg>
+                                </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" id="add_file_btn">Add File</button>
+                        </div>
+                        <!-- end add file -->
+                        <!-- START FORM -->
+                        <div class="Fileform" style="display: none;" id="display_add_form">
+                                <div class="form-group">
+                                    <label for="name">Name Of File</label>
+                                    <input type="text" class="form-control" id="name"  placeholder="Enter Name Of File">
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">File Description</label>
+                                    <textarea class="form-control" id="description" rows="3"></textarea>
+                                </div>
+                                <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="fileInput">
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                        </div>
+                            <!-- <p>
+                                <label for="">File Upload</label>
+                                <input type="file" name="file" id="fileInput">
+                            </p> -->
+                            <div class="form-group">
+                                    <button id="addFile" class="btn btn-block btn-primary mt-3">Submit</button>
+                            </div>
+                        </div>
+                        <!-- END FORM -->
+
+                        <!-- GET FILE -->
+                        <div id="getFile">
+                            <!-- render -->
+                                      
+                        </div>
+                        <!-- ENF GET FILE -->
+                        
+                      </div>  
+                  </div>
+                  <footer>
+                    <div class="footer mt-4 text-center">
+                            Built By GoodnessEzeokafor 
+                    </div>
+                    </footer>
+
+              </div>
+    <script id="template" type="x-tmpl-mustache">
+        {{#fileListArr}}
+        <div class="card mb-4">
+                <div class="card-header">
+                    {{name}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-bold">File Description</h5>
+                    <p class="card-text">
+                        {{description}}
+                        <br>
+                        <span class="text-bold">Uploaded By: {{owner}}</span>
+                        <br>
+                        <span class="text-bold">Uploaded on {{createdAt}}</span>
+                        <br>
+                        <span class="text-bold"> Copy this link : https://ipfs.io/ipfs/{{file_hash}} to view the file</span>
+                        <br>
+                        <a href="ipfs.io/ipfs/{{file_hash}}">link</a>
+                    </p>
+                    <a href="ipfs.io/ipfs/{{file_hash}}"  class="btn btn-primary">View File</a>
+                </div>
+            </div>
+        {{/fileListArr }}
+    </script>
+    <script src="js/jquery.min.js"></script>
+    <!-- <script src="https://unpkg.com/ipfs/dist/index.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.js"></script>
+    <script src="https://unpkg.com/ipfs-http-client/dist/index.min.js"></script>
+    <script src="https://unpkg.com/@aeternity/aepp-sdk@6.1.2/dist/aepp-sdk.browser-script.js"></script>    <!-- <script src="index.js"></script>
+     -->
+     <script src="js/popper.min.js"></script>
+     <script src="js/bootstrap.min.js"></script>
+     <script src="public/bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+contract File=
+  record file ={
+    id:int,
+    name:string,
+    description:string,
+    createdAt:int,
+    updatedAt:int,
+    author:address,
+    file_hash:string}
+  record state ={
+      index_counter:int,
+      files:map(int,file)}
+  entrypoint init()={
+    index_counter=0,
+    files={}}
+  entrypoint getFileLength():int=
+    state.index_counter
+  stateful entrypoint add_file(_name:string,_description:string,_hash :string) =
+   let stored_file = {id=getFileLength() + 1,name=_name,description=_description, createdAt=Chain.timestamp,updatedAt=Chain.timestamp,author = Call.caller,file_hash=_hash}
+   let index = getFileLength() + 1
+   put(state{files[index]=stored_file,index_counter=index})
+  
+  entrypoint get_file_by_index(index:int) : file = 
+   switch(Map.lookup(index, state.files))
+     None => abort("Product does not exist with this index")
+     Some(x) => x  
